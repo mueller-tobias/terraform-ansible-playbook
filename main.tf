@@ -3,6 +3,10 @@ resource "terraform_data" "playbook_variables" {
   input = sha256(var.playbook_variables)
 }
 
+resource "terraform_data" "inventory" {
+  input = sha256(file(var.inventory_path))
+}
+
 resource "terraform_data" "ansible_provisioning" {
 
   lifecycle {
