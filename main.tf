@@ -1,16 +1,22 @@
 
-module "tags" {
-  source  = "rhythmictech/tags/terraform"
-  version = "~> 1.1.0"
-
-  enforce_case = "UPPER"
-  names        = [var.name]
-  tags         = var.tags
+resource "terraform_data" "playbook_variables" {
+  input = sha256(var.playbook_variables)
 }
 
-locals {
-  # tflint-ignore: terraform_unused_declarations
-  name = module.tags.name
-  # tflint-ignore: terraform_unused_declarations
-  tags = module.tags.tags_no_name
+resource "terraform_data" "ansible_provisioning" {
+
+  lifecycle {
+    replace_triggered_by = [terraform_data.playbook_variables]
+  }
+
+  provisioner "local-exec" {
+    environment = var.playbook_environment_vars
+    command = format("ansible-playbook -i %s -u %s %s --extra-vars '%s' %s",
+      var.inventory_path,
+      var.playbook_ansible_user,
+      "%{if var.playbook_ssh_key != ""}--private-key ${var.playbook_ssh_key}%{else}%{endif}",
+      jsonencode(yamldecode(var.playbook_variables)),
+      var.playbook_path
+    )
+  }
 }
