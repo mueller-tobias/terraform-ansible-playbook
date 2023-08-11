@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/mueller-tobias/terraform-ansible-playbook/compare/v1.0.0...v1.0.1) (2023-08-11)
+
+
+### Bug Fixes
+
+* fix bug that an inventory change dosn't trigger the run of the ansible playbook ([050ba55](https://github.com/mueller-tobias/terraform-ansible-playbook/commit/050ba55650f6adb409160b062a9dae964a472dd9))
+
 # 1.0.0 (2023-08-11)
 
 
