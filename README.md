@@ -1,22 +1,29 @@
-# terraform-terraform-template
-Template repository for terraform modules. Good for any cloud and any provider.
+# terraform-ansible-playbook
 
-[![tflint](https://github.com/rhythmictech/terraform-terraform-template/workflows/tflint/badge.svg?branch=master&event=push)](https://github.com/rhythmictech/terraform-terraform-template/actions?query=workflow%3Atflint+event%3Apush+branch%3Amaster)
-[![tfsec](https://github.com/rhythmictech/terraform-terraform-template/workflows/tfsec/badge.svg?branch=master&event=push)](https://github.com/rhythmictech/terraform-terraform-template/actions?query=workflow%3Atfsec+event%3Apush+branch%3Amaster)
-[![yamllint](https://github.com/rhythmictech/terraform-terraform-template/workflows/yamllint/badge.svg?branch=master&event=push)](https://github.com/rhythmictech/terraform-terraform-template/actions?query=workflow%3Ayamllint+event%3Apush+branch%3Amaster)
-[![misspell](https://github.com/rhythmictech/terraform-terraform-template/workflows/misspell/badge.svg?branch=master&event=push)](https://github.com/rhythmictech/terraform-terraform-template/actions?query=workflow%3Amisspell+event%3Apush+branch%3Amaster)
-[![pre-commit-check](https://github.com/rhythmictech/terraform-terraform-template/workflows/pre-commit-check/badge.svg?branch=master&event=push)](https://github.com/rhythmictech/terraform-terraform-template/actions?query=workflow%3Apre-commit-check+event%3Apush+branch%3Amaster)
+A terraform module to run a playbook from within terraform.
+
+[![tflint](https://github.com/mueller-tobias/terraform-ansible-playbook/workflows/tflint/badge.svg?branch=master&event=push)](https://github.com/mueller-tobias/terraform-ansible-playbook/actions?query=workflow%3Atflint+event%3Apush+branch%3Amaster)
+[![tfsec](https://github.com/mueller-tobias/terraform-ansible-playbook/workflows/tfsec/badge.svg?branch=master&event=push)](https://github.com/mueller-tobias/terraform-ansible-playbook/actions?query=workflow%3Atfsec+event%3Apush+branch%3Amaster)
+[![yamllint](https://github.com/mueller-tobias/terraform-ansible-playbook/workflows/yamllint/badge.svg?branch=master&event=push)](https://github.com/mueller-tobias/terraform-ansible-playbook/actions?query=workflow%3Ayamllint+event%3Apush+branch%3Amaster)
+[![misspell](https://github.com/mueller-tobias/terraform-ansible-playbook/workflows/misspell/badge.svg?branch=master&event=push)](https://github.com/mueller-tobias/terraform-ansible-playbook/actions?query=workflow%3Amisspell+event%3Apush+branch%3Amaster)
+[![pre-commit-check](https://github.com/mueller-tobias/terraform-ansible-playbook/workflows/pre-commit-check/badge.svg?branch=master&event=push)](https://github.com/mueller-tobias/terraform-ansible-playbook/actions?query=workflow%3Apre-commit-check+event%3Apush+branch%3Amaster)
+[![semantic-release](https://github.com/mueller-tobias/terraform-ansible-playbook/actions/workflows/semantic-release.yaml/badge.svg)](https://github.com/mueller-tobias/terraform-ansible-playbook/actions/workflows/semantic-release.yaml)
+![GitHub release (with filter)](https://img.shields.io/github/v/release/mueller-tobias/terraform-ansible-playbook)
 
 ## Example
 Here's what using the module will look like
 ```hcl
-module "example" {
-  source = "rhythmictech/terraform-mycloud-mymodule
+module "playbook" {
+  source  = "mueller-tobias/playbook/ansible"
+  version = "1.0.1"
+  # insert the 3 required variables here
 }
 ```
 
 ## About
-A bit about this module
+
+This module can be used to execute a ansible playbook from within terraform.
+A change of contents of the inventory or the playbook variables will recreate the ansible resource and trigger a re-run of the playbook.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -57,17 +64,3 @@ No modules.
 
 No outputs.
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
-## Getting Started
-This workflow has a few prerequisites which are installed through the `./bin/install-x.sh` scripts and are linked below. The install script will also work on your local machine.
-
-- [pre-commit](https://pre-commit.com)
-- [terraform](https://terraform.io)
-- [tfenv](https://github.com/tfutils/tfenv)
-- [terraform-docs](https://github.com/segmentio/terraform-docs)
-- [tfsec](https://github.com/tfsec/tfsec)
-- [tflint](https://github.com/terraform-linters/tflint)
-
-We use `tfenv` to manage `terraform` versions, so the version is defined in the `versions.tf` and `tfenv` installs the latest compliant version.
-`pre-commit` is like a package manager for scripts that integrate with git hooks. We use them to run the rest of the tools before apply.
-`terraform-docs` creates the beautiful docs (above),  `tfsec` scans for security no-nos, `tflint` scans for best practices.
