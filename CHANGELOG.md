@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/mueller-tobias/terraform-ansible-playbook/compare/v1.0.1...v1.1.0) (2023-08-14)
+
+
+### Features
+
+* Add Ability to specify a list of keys that will be added to a running ssh agent. Keys will be removed after the ansible playbook run. ([c96c109](https://github.com/mueller-tobias/terraform-ansible-playbook/commit/c96c10907f2fd038b4d00cc8be9cdff57528d280))
+
 ## [1.0.1](https://github.com/mueller-tobias/terraform-ansible-playbook/compare/v1.0.0...v1.0.1) (2023-08-11)
 
 
