@@ -14,6 +14,14 @@ resource "terraform_data" "ansible_provisioning" {
   }
 
   provisioner "local-exec" {
+    command = <<EOT
+      %{for ssh_key in var.ssh_agent_keys}
+        ssh-add - <<< "${ssh_key}"
+      %{endfor}
+    EOT
+  }
+
+  provisioner "local-exec" {
     environment = var.playbook_environment_vars
     command = format("ansible-playbook -i %s -u %s %s --extra-vars '%s' %s",
       var.inventory_path,
@@ -23,4 +31,11 @@ resource "terraform_data" "ansible_provisioning" {
       var.playbook_path
     )
   }
+
+  provisioner "local-exec" {
+    command = <<EOT
+        ssh-add -D
+    EOT
+  }
+
 }

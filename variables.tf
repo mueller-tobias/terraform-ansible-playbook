@@ -33,6 +33,12 @@ variable "playbook_ssh_key" {
   default     = ""
 }
 
+variable "ssh_agent_keys" {
+  type        = list(string)
+  description = "List of private Keys that will be added to the ssh agent before executing the playbook"
+  default     = [""]
+}
+
 variable "playbook_path" {
   type        = string
   description = "Path tot the Playbook that should be executed"

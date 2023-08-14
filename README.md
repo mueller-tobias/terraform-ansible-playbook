@@ -47,6 +47,7 @@ No modules.
 | Name | Type |
 |------|------|
 | [terraform_data.ansible_provisioning](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
+| [terraform_data.inventory](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
 | [terraform_data.playbook_variables](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
 
 ## Inputs
@@ -59,6 +60,7 @@ No modules.
 | <a name="input_playbook_path"></a> [playbook\_path](#input\_playbook\_path) | Path tot the Playbook that should be executed | `string` | n/a | yes |
 | <a name="input_playbook_ssh_key"></a> [playbook\_ssh\_key](#input\_playbook\_ssh\_key) | SSH Key that will be used to connect with the remote machines | `string` | `""` | no |
 | <a name="input_playbook_variables"></a> [playbook\_variables](#input\_playbook\_variables) | Playbook Variables in YAML Format | `string` | n/a | yes |
+| <a name="input_ssh_agent_keys"></a> [ssh\_agent\_keys](#input\_ssh\_agent\_keys) | List of private Keys that will be added to the ssh agent before executing the playbook | `list(string)` | <pre>[<br>  ""<br>]</pre> | no |
 
 ## Outputs
 
